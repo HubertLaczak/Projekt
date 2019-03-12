@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class FirstAdapter extends  RecyclerView.Adapter<FirstAdapter.ExampleViewHolder> {
 
-    private ArrayList<String> mExampleList;
+    private ArrayList<SingleObject> mExampleList;
     private OnItemClickListener mListener;
 
     public interface  OnItemClickListener{
@@ -23,10 +23,12 @@ public class FirstAdapter extends  RecyclerView.Adapter<FirstAdapter.ExampleView
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_Item;
+        public TextView tv_Value;
 
         public ExampleViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             tv_Item = itemView.findViewById(R.id.tv_OnePath);
+            tv_Value = itemView.findViewById(R.id.tv_Value);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -42,7 +44,7 @@ public class FirstAdapter extends  RecyclerView.Adapter<FirstAdapter.ExampleView
         }
     }
 
-    public FirstAdapter(ArrayList<String> exampleList){
+    public FirstAdapter(ArrayList<SingleObject> exampleList){
         this.mExampleList = exampleList;
     }
 
@@ -55,8 +57,8 @@ public class FirstAdapter extends  RecyclerView.Adapter<FirstAdapter.ExampleView
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder exampleViewHolder, int i) {
-        String currentItem = mExampleList.get(i);
-        exampleViewHolder.tv_Item.setText(currentItem);
+        exampleViewHolder.tv_Item.setText(mExampleList.get(i).getKey());
+        exampleViewHolder.tv_Value.setText(mExampleList.get(i).getValue());
     }
 
     @Override
